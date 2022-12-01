@@ -31,8 +31,8 @@ except:
     logging.info(f" {time}: bot: {'not started!!!'}")
 
 
-@bot.message_handler(commands=['start'])
-def start_message(message):
+#@bot.message_handler(commands=['start'])
+def start_executor(message):
     current_time = dt.now().strftime('%d.%m.%Y ; %H:%M:%S')
     logging.info(f" {current_time}: {message.chat.id} {message}")
     prompt = "Привет! Начнем ?"
@@ -40,8 +40,8 @@ def start_message(message):
     logging.info(f" {current_time}: {message.chat.id}: bot: {prompt}")
 
 
-@bot.message_handler(commands=['help'])
-def start_message(message):
+#@bot.message_handler(commands=['help'])
+def help_executor(message):
     current_time = dt.now().strftime('%d.%m.%Y ; %H:%M:%S')
     logging.info(f" {current_time}: {message.chat.id} {message}")
     prompt = "\n/start\n/calc\n/calc 1+2+3 "
@@ -49,13 +49,16 @@ def start_message(message):
     logging.info(f" {current_time}: {message.chat.id}: bot: {prompt}")
 
 
-@bot.message_handler(commands=['calc'])
-def start_message(message):
+#@bot.message_handler(commands=['calc'])
+def calc_executor(message):
     current_time = dt.now().strftime('%d.%m.%Y ; %H:%M:%S')
     logging.info(f" {current_time}: {message.chat.id} {message}")
     result = message.text[5:] + " = " + calculator.main_calculation(message.text[5:])
     bot.send_message(message.chat.id, result)
     logging.info(f" {current_time}: {message.chat.id}: bot: {result}")
 
+bot.register_message_handler(start_executor, commands=['start'])
+bot.register_message_handler(help_executor, commands=['help'])
+bot.register_message_handler(calc_executor, commands=['calc'])
 
 bot.infinity_polling()
