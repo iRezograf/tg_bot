@@ -10,7 +10,7 @@ filename = "tg_bot_log.log"
 maxBytes = 2 * 1024 * 256
 backupCount = 2
 
-with open('My_HTTP_API.token', 'r') as token_file:
+with open('My_HTTP_API_2.token', 'r') as token_file:
     My_HTTP_API = token_file.read()
 
 logging.handlers.RotatingFileHandler(filename, maxBytes, backupCount)
